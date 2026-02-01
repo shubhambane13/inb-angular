@@ -1,0 +1,45 @@
+<div class="container py-5 h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      
+      <mat-card class="auth-card px-4 py-3 border-top border-4 border-danger">
+        <mat-card-header class="justify-content-center mb-3">
+          <mat-card-title class="text-danger fw-bold fs-2">Admin Portal</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            
+            <mat-form-field appearance="outline" class="w-100 mb-2">
+              <mat-label>Admin ID</mat-label>
+              <input matInput formControlName="adminId" placeholder="Enter Admin ID">
+              <mat-icon matSuffix>admin_panel_settings</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100 mb-4">
+              <mat-label>Password</mat-label>
+              <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+              <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <div class="d-grid gap-2">
+              <button mat-raised-button color="warn" type="submit" size="large" [disabled]="loginForm.invalid" class="py-2 fs-5">
+                Admin Access
+              </button>
+            </div>
+
+          </form>
+        </mat-card-content>
+
+        <mat-card-actions class="d-flex justify-content-center mt-3 px-3">
+          <span class="text-muted small">Not an admin? 
+            <a routerLink="/auth/login" class="text-decoration-none fw-bold text-primary">Login as Customer</a>
+          </span>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+  </div>
+</div>
