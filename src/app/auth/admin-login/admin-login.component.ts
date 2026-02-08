@@ -1,23 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { GlobalService } from '../../shared/services/global.service';
 
 @Component({
   selector: 'app-admin-login',
   templateUrl: './admin-login.component.html',
-  styleUrl: './admin-login.component.css'
+  styleUrl: './admin-login.component.css',
 })
 export class AdminLoginComponent {
-
   loginForm!: FormGroup;
   hidePassword = true; // For toggling password visibility
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private _globalService: GlobalService,
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      adminId: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
 
@@ -26,6 +30,11 @@ export class AdminLoginComponent {
       console.log('Login Data:', this.loginForm.value);
       // TODO: Call AuthService here
       // On success: this.router.navigate(['/dashboard']);
+      this._globalService
+        .postToServer('auth/login-admin', this.loginForm.getRawValue())
+        .subscribe((res) => {
+          console.log(res);
+        });
     }
   }
 }

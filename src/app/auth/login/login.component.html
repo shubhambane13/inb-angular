@@ -9,17 +9,17 @@
         </mat-card-header>
 
         <mat-card-content>
-          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="loginForm">
             <mat-form-field appearance="outline" class="w-100 mb-2">
               <mat-label>Customer ID</mat-label>
               <input
                 matInput
-                formControlName="customerId"
+                formControlName="email"
                 placeholder="Enter your ID"
               />
               <mat-icon matSuffix>person</mat-icon>
               <mat-error
-                *ngIf="loginForm.get('customerId')?.hasError('required')"
+                *ngIf="loginForm.get('email')?.hasError('required')"
               >
                 Customer ID is required
               </mat-error>
@@ -59,6 +59,7 @@
                 size="large"
                 [disabled]="loginForm.invalid"
                 class="py-2 fs-5"
+                (click)="onSubmit()"
               >
                 Secure Login
               </button>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { GlobalService } from '../../shared/services/global.service';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,11 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   hidePassword = true; // For toggling password visibility
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private _globalService: GlobalService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      customerId: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -23,8 +24,9 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
       console.log('Login Data:', this.loginForm.value);
-      // TODO: Call AuthService here
-      // On success: this.router.navigate(['/dashboard']);
+      this._globalService.postToServer("auth/login-customer", this.loginForm.getRawValue()).subscribe(res => {
+        console.log(res);
+      });
     }
   }
 }
