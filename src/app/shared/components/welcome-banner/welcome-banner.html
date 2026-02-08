@@ -1,0 +1,15 @@
+<div class="welcome-card mat-elevation-z2 rounded-3 overflow-hidden mb-4">
+  <div class="d-flex justify-content-between align-items-center p-4 text-white gradient-bg">
+    <div>
+      <h2 class="mb-1 fw-bold">Welcome back, {{ name }}!</h2>
+      <p class="mb-0 opacity-75">
+        <mat-icon class="align-middle fs-6" style="font-size: 18px; width: 18px; height: 18px;">today</mat-icon>
+        {{ today | date:'fullDate' }}
+      </p>
+    </div>
+    <div class="d-none d-md-block text-end opacity-75">
+      <small class="d-block text-uppercase letter-spacing-2">Last Login</small>
+      <span class="fw-bold">{{ lastLogin | date:'shortTime' }}</span>
+    </div>
+  </div>
+</div>

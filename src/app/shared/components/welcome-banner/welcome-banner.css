@@ -1,0 +1,8 @@
+.gradient-bg {
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+}
+
+.welcome-card {
+  position: relative;
+  border: none;
+}

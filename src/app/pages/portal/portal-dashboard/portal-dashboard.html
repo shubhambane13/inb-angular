@@ -1,0 +1,114 @@
+<div class="container-fluid">
+  
+  <app-welcome-banner [name]="'John Doe'" [lastLogin]="lastLoginDate"></app-welcome-banner>
+
+  <div class="row g-4 mb-4">
+    
+    <div class="col-md-4">
+      <mat-card class="h-100 border-start border-5 border-primary shadow-sm">
+        <mat-card-content class="d-flex justify-content-between align-items-center">
+          <div>
+            <p class="text-muted mb-1 fw-bold small text-uppercase">Total Balance</p>
+            <h2 class="mb-0 fw-bold text-primary">$24,500.00</h2>
+          </div>
+          <div class="icon-box bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+            <mat-icon>account_balance_wallet</mat-icon>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-md-4">
+      <mat-card class="h-100 border-start border-5 border-success shadow-sm">
+        <mat-card-content class="d-flex justify-content-between align-items-center">
+          <div>
+            <p class="text-muted mb-1 fw-bold small text-uppercase">Savings</p>
+            <h2 class="mb-0 fw-bold text-success">$12,250.00</h2>
+          </div>
+          <div class="icon-box bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+            <mat-icon>trending_up</mat-icon>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-md-4">
+      <mat-card class="h-100 border-start border-5 border-warn shadow-sm">
+        <mat-card-content class="d-flex justify-content-between align-items-center">
+          <div>
+            <p class="text-muted mb-1 fw-bold small text-uppercase">Monthly Expense</p>
+            <h2 class="mb-0 fw-bold text-warn">$1,200.00</h2>
+          </div>
+          <div class="icon-box bg-warning-subtle text-warn rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+            <mat-icon>shopping_cart</mat-icon>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    
+    <div class="col-md-4 order-md-2">
+      <mat-card class="h-100 shadow-sm">
+        <mat-card-header>
+            <mat-card-title class="fs-6 fw-bold">Quick Actions</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-nav-list>
+            <a mat-list-item routerLink="/portal/transfer">
+                <mat-icon matListItemIcon class="text-primary">send</mat-icon>
+                <span matListItemTitle>Transfer Money</span>
+            </a>
+            <a mat-list-item routerLink="/portal/statements">
+                <mat-icon matListItemIcon class="text-primary">description</mat-icon>
+                <span matListItemTitle>Download Statement</span>
+            </a>
+             <a mat-list-item routerLink="/portal/cheque-book">
+                <mat-icon matListItemIcon class="text-primary">book</mat-icon>
+                <span matListItemTitle>Request Cheque Book</span>
+            </a>
+        </mat-nav-list>
+      </mat-card>
+    </div>
+
+    <div class="col-md-8 order-md-1">
+      <mat-card class="h-100 shadow-sm">
+         <mat-card-header class="d-flex justify-content-between align-items-center mb-2">
+            <mat-card-title class="fs-6 fw-bold">Recent Transactions</mat-card-title>
+            <button mat-button color="primary">View All</button>
+        </mat-card-header>
+        
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="bg-light">
+                    <tr>
+                        <th class="border-0">Date</th>
+                        <th class="border-0">Description</th>
+                        <th class="border-0 text-end">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10 Oct, 2023</td>
+                        <td>Netflix Subscription</td>
+                        <td class="text-end fw-bold text-danger">-$15.00</td>
+                    </tr>
+                     <tr>
+                        <td>08 Oct, 2023</td>
+                        <td>Salary Credit</td>
+                        <td class="text-end fw-bold text-success">+$4,500.00</td>
+                    </tr>
+                     <tr>
+                        <td>05 Oct, 2023</td>
+                        <td>Transfer to Mom</td>
+                        <td class="text-end fw-bold text-danger">-$500.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </mat-card>
+    </div>
+
+  </div>
+</div>

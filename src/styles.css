@@ -1,3 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.bg-primary-subtle { background-color: rgba(13, 110, 253, 0.1); }
+.bg-success-subtle { background-color: rgba(25, 135, 84, 0.1); }
+.bg-warning-subtle { background-color: rgba(255, 193, 7, 0.1); }
+
+.text-warn { color: #f57c00 !important; }
+.border-warn { border-color: #f57c00 !important; }
+
+mat-card {
+    transition: transform 0.2s;
+    &:hover {
+        transform: translateY(-2px);
+    }
+}

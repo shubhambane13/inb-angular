@@ -5,6 +5,13 @@ export const PortalRoutes: Routes = [
   {
     path: '',
     component: PortalLayoutCompomenet,
-    children: [],
+    children: [
+      { 
+        path: 'dashboard', 
+        loadComponent: () => import('./../pages/portal/portal-dashboard/portal-dashboard').then(m => m.PortalDashboard),
+      },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '**', redirectTo: 'dashboard' }
+    ],
   },
 ];
