@@ -11,8 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
-import { HeaderComponent } from '../../shared/components/header/header';
-import { SidebarComponent } from '../../shared/components/sidebar/sidebar';
+import { HeaderComponent } from '../../../shared/components/header/header';
+import { SidebarComponent } from '../../../shared/components/sidebar/sidebar';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 

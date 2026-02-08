@@ -8,7 +8,7 @@ export const PortalRoutes: Routes = [
     children: [
       { 
         path: 'dashboard', 
-        loadComponent: () => import('./../pages/portal/portal-dashboard/portal-dashboard').then(m => m.PortalDashboard),
+        loadComponent: () => import('./../../pages/portal/portal-dashboard/portal-dashboard').then(m => m.PortalDashboard),
       },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: '**', redirectTo: 'dashboard' }
