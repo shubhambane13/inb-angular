@@ -1,0 +1,33 @@
+<mat-toolbar color="primary" class="main-header shadow-sm">
+  
+  <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span class="fw-bold fs-4 ms-2">iNetBank</span>
+  
+  <span class="spacer"></span>
+
+  <button mat-button [matMenuTriggerFor]="userMenu" class="d-flex align-items-center">
+    <img src="https://ui-avatars.com/api/?name=User&background=random" class="rounded-circle me-2" width="32">
+    <span class="d-none d-md-inline">Welcome, User</span>
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="logout()">
+        <mat-icon color="warn">logout</mat-icon>
+        <span>Logout</span>
+    </button>
+  </mat-menu>
+
+</mat-toolbar>

@@ -32,8 +32,12 @@ export class AdminLoginComponent {
       // On success: this.router.navigate(['/dashboard']);
       this._globalService
         .postToServer('auth/login-admin', this.loginForm.getRawValue())
-        .subscribe((res) => {
-          console.log(res);
+        .subscribe((res:any) => {
+          if(res.success) {
+            GlobalService.AUTH_TOKEN = res.jwtToken;
+            GlobalService.USER = res.user;
+            this.router.navigate(['/admin']);
+          }
         });
     }
   }

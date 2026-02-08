@@ -24,8 +24,12 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
       console.log('Login Data:', this.loginForm.value);
-      this._globalService.postToServer("auth/login-customer", this.loginForm.getRawValue()).subscribe(res => {
-        console.log(res);
+      this._globalService.postToServer("auth/login-customer", this.loginForm.getRawValue()).subscribe((res:any) => {
+        if(res.success) {
+          GlobalService.AUTH_TOKEN = res.jwtToken;
+          GlobalService.USER = res.user;
+          this.router.navigate(['/portal']);
+        }
       });
     }
   }

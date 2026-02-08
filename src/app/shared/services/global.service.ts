@@ -8,6 +8,9 @@ import { Observable } from 'rxjs';
 export class GlobalService {
   url = "http://localhost:6969/";
 
+  static AUTH_TOKEN:string = "";
+  static USER:any = {};
+
   constructor(private _http: HttpClient) {}
 
   postToServer(endpoint:string, payload:any):Observable<Object> {

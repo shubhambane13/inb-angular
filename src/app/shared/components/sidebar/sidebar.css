@@ -1,0 +1,17 @@
+.sidebar-header {
+    background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+}
+
+.active-link {
+    background-color: rgba(25, 118, 210, 0.1);
+    border-right: 4px solid #1976d2;
+    color: #1976d2 !important;
+    
+    mat-icon {
+        color: #1976d2;
+    }
+}
+
+a[mat-list-item]:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
