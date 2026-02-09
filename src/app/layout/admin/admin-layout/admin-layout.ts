@@ -1,5 +1,3 @@
-export class AdminLayout {}
-
 import { Component, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
@@ -30,7 +28,7 @@ import { RouterModule } from '@angular/router';
     MatListModule,
     MatMenuModule,
     MatDividerModule,
-    HeaderComponent,
+    HeaderComponent,  
     SidebarComponent
   ],
   standalone: true,
@@ -40,14 +38,32 @@ export class AdminLayoutCompomenet {
   
   adminMenu: any = [
     {
+      type: "MENU",
+      menuName: "Dashboard",
+      menuRoute: "/admin/dashboard",
+      menuIcon: "dashboard"
+    },
+    {
       type: "HEADER",
-      headetName: "Management"
+      headetName: "Customer Management"
     },
     {
       type: "MENU",
-      menuName: "All Users",
-      menuRoute: "/admin/users",
+      menuName: "Active Customer",
+      menuRoute: "/admin/active-customers",
       menuIcon: "group"
+    },
+    {
+      type: "MENU",
+      menuName: "Pending Approvals",
+      menuRoute: "/admin/pending-customers",
+      menuIcon: "verified_user"
+    },
+    {
+      type: "MENU",
+      menuName: "Locked Customer",
+      menuRoute: "/admin/locked-customers",
+      menuIcon: "lock"
     },
   ]
 
