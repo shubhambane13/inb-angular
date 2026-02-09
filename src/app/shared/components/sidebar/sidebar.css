@@ -15,3 +15,9 @@
 a[mat-list-item]:hover {
     background-color: rgba(0, 0, 0, 0.04);
 }
+
+.active-link[mat-list-item]:hover  {
+    mat-icon {
+        color: #1976d2;
+    }
+}
