@@ -1,0 +1,50 @@
+<div class="mat-elevation-z2 table-container position-relative">
+  
+  <div class="loading-shade" *ngIf="!tableData">
+    </div>
+
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="handleSortEvent($event)">
+
+    <ng-container *ngFor="let col of columnList" [matColumnDef]="col.key">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ col.label }} </th>
+      
+      <td mat-cell *matCellDef="let element">
+        
+        <ng-container *ngIf="col.type === 'link'">
+          <a class="text-primary text-decoration-none fw-bold pointer" 
+             (click)="handleAction(element, col.action)">
+            {{ element[col.key] }}
+          </a>
+        </ng-container>
+
+        <ng-container *ngIf="!col.type || col.type === 'text'">
+          {{ element[col.key] }}
+        </ng-container>
+
+         <ng-container *ngIf="col.type === 'date'">
+            {{ element[col.key] | date: dateFormat }}
+         </ng-container>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+    <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell p-4 text-center text-muted" [attr.colspan]="displayedColumns.length">
+            No records found
+        </td> 
+    </tr>
+  </table>
+
+  <mat-paginator 
+    [length]="tableData.total"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="[5, 10, 20, 50]"
+    (page)="handlePageEvent($event)"
+    showFirstLastButtons>
+  </mat-paginator>
+
+</div>

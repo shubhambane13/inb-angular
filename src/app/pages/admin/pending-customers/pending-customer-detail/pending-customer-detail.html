@@ -1,0 +1,34 @@
+<app-customer-data-view>
+  <div class="d-flex mt-2">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      size="large"
+      class="py-2 fs-5 col-4"
+      (click)="onApprove()"
+    >
+      Approve
+    </button>
+
+    <button
+      mat-stroked-button
+      color="warn"
+      type="button"
+      class="py-2 fs-5 col-4"
+      (click)="onReject()"
+    >
+      Reject
+    </button>
+
+    <button
+      mat-stroked-button
+      color="warn"
+      type="button"
+      class="py-2 fs-5 col-4"
+      (click)="onBack()"
+    >
+      Back
+    </button>
+  </div>
+</app-customer-data-view>

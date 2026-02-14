@@ -14,7 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 
-const routes:Routes = [
+export const routes:Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin-login', component: AdminLoginComponent },
   { path: 'register', component: RegisterComponent },

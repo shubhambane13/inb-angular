@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
       // TODO: Call AuthService to register
 
       this._globalService
-        .postToServer('auth/register-admin', registerData)
+        .postToServer('auth/register-cusotmer', registerData)
         .subscribe((res) => {
           console.log(res);
         });

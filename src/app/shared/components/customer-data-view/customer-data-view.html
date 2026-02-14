@@ -1,0 +1,48 @@
+<form [formGroup]="cusomerViewForm">
+  <mat-form-field appearance="outline" class="w-100 mb-1">
+    <mat-label>Full Name</mat-label>
+    <input matInput formControlName="name" placeholder="John Doe" />
+    <mat-icon matSuffix>badge</mat-icon>
+    <mat-error>Name is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100 mb-1">
+    <mat-label>Email Address</mat-label>
+    <input
+      matInput
+      formControlName="email"
+      placeholder="john@example.com"
+      type="email"
+    />
+    <mat-icon matSuffix>email</mat-icon>
+    <mat-error *ngIf="cusomerViewForm.get('email')?.hasError('email')"
+      >Please enter a valid email</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100 mb-1">
+    <mat-label>Phone Number</mat-label>
+    <input
+      matInput
+      formControlName="phone"
+      placeholder="10-digit number"
+      type="tel"
+    />
+    <mat-icon matSuffix>phone</mat-icon>
+    <mat-error>Valid 10-digit phone is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100 mb-1">
+    <mat-label>Address</mat-label>
+    <textarea
+      matInput
+      formControlName="address"
+      rows="2"
+      placeholder="Your full address"
+    ></textarea>
+    <mat-icon matSuffix>home</mat-icon>
+    <mat-error>Address is required</mat-error>
+  </mat-form-field>
+</form>
+
+<ng-content></ng-content>

@@ -1,0 +1,10 @@
+<app-global-table
+  [tableData]="tableData"
+  [columnList]="tableConfig"
+  [pageSize]="pageSize"
+  [pageIndex]="pageIndex"
+  (onAction)="handleTableAction($event)"
+  (onSortChange)="onSortChange($event)"
+  (onPageChange)="onPageChange($event)"
+>
+</app-global-table>
