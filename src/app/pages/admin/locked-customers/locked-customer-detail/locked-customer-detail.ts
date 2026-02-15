@@ -15,6 +15,7 @@ export class LockedCustomerDetail {
   userData: any;
   @ViewChild(CustomerDataViewComponent)
   viewComponent!: CustomerDataViewComponent;
+  formData!: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,17 +25,20 @@ export class LockedCustomerDetail {
   ) {}
 
   ngOnInit() {
-    console.log(history.state.id);
+    this.formData = history.state.id;
   }
 
   ngAfterViewInit() {
-    console.log(history.state.id);
     this.viewComponent.cusomerViewForm.patchValue(history.state.id);
     this.cdr.detectChanges();
   }
 
   onUnlock() {
-    
+    this._globalService
+      .postToServer('users/unlock-customer', this.formData)
+      .subscribe((res) => {
+        
+      });
   }
   
   onBack() {

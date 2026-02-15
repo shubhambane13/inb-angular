@@ -69,6 +69,7 @@ export class LockedCustomers {
     this.pageSize = event.pageSize;
     this.getGrid(); // Fetch new data
   }
+  
   onSortChange(sortState: Sort) {
     // Angular Material returns 'asc', 'desc', or '' (empty)
     
@@ -86,10 +87,4 @@ export class LockedCustomers {
     
     this.getGrid();
   }
-
-  onApprove() {}
-
-  onReject() {}
-
-  onBack() {}
 }

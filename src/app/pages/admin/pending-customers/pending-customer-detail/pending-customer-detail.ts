@@ -15,6 +15,7 @@ export class PendingCustomerDetail {
   userData: any;
   @ViewChild(CustomerDataViewComponent)
   viewComponent!: CustomerDataViewComponent;
+  formData!: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,7 +25,7 @@ export class PendingCustomerDetail {
   ) {}
 
   ngOnInit() {
-    console.log(history.state.id);
+    this.formData = history.state.id;
   }
 
   ngAfterViewInit() {
@@ -34,14 +35,19 @@ export class PendingCustomerDetail {
   }
 
   onApprove() {
-    // this.adminService.approveUser(this.userId).subscribe(() => {
-    //     alert('User Approved!');
-    //     this.router.navigate(['../'], { relativeTo: this.route }); // Go back to grid
-    // });
+    this._globalService
+      .postToServer('users/approve-customer', this.formData)
+      .subscribe((res) => {
+        
+      });
   }
 
   onReject() {
-    // Logic for rejection
+    this._globalService
+      .postToServer('users/reject-customer', this.formData)
+      .subscribe((res) => {
+        
+      });
   }
 
   onBack() {
