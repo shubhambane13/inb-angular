@@ -44,22 +44,84 @@ export class PortalLayoutCompomenet {
       menuIcon: "dashboard"
     },
     {
+      type: "HEADER",
+      headetName: "Customer Management"
+    },
+    {
       type: "MENU",
-      menuName: "My Accounts",
-      menuRoute: "/portal/accounts",
+      menuName: "Account Summary",
+      menuRoute: "/portal/account-summary",
       menuIcon: "account_balance_wallet"
     },
     {
       type: "MENU",
-      menuName: "Transfer Funds",
-      menuRoute: "/portal/transfer",
-      menuIcon: "payments"
+      menuName: "Account Statements",
+      menuRoute: "/portal/account-statement",
+      menuIcon: "receipt_long"
     },
     {
       type: "MENU",
-      menuName: "Transactions",
-      menuRoute: "/portal/transactions",
-      menuIcon: "history"
+      menuName: "Open New Account",
+      menuRoute: "/portal/open-new-account",
+      menuIcon: "add_card"
+    },
+    {
+      type: "HEADER",
+      headetName: "Transfers"
+    },
+    {
+      type: "MENU",
+      menuName: "Transfer Funds",
+      menuRoute: "/portal/transfer-funds",
+      menuIcon: "compare_arrows"
+    },
+    {
+      type: "HEADER",
+      headetName: "Bill Payments"
+    },
+    {
+      type: "MENU",
+      menuName: "Pay Bill",
+      menuRoute: "/portal/pay-bill",
+      menuIcon: "receipt"
+    },
+    {
+      type: "MENU",
+      menuName: "Scheduled Payments",
+      menuRoute: "/portal/scheduled-payments",
+      menuIcon: "event_repeat"
+    },
+    {
+      type: "HEADER",
+      headetName: "Cheques"
+    },
+    {
+      type: "MENU",
+      menuName: "Deposit Cheque",
+      menuRoute: "/portal/deposite-cheque",
+      menuIcon: "upload_file"
+    },
+    {
+      type: "MENU",
+      menuName: "Track Status",
+      menuRoute: "/portal/track-cheque-status",
+      menuIcon: "query_stats"
+    },
+    {
+      type: "HEADER",
+      headetName: "Fixed Deposits"
+    },
+    {
+      type: "MENU",
+      menuName: "Open New FD",
+      menuRoute: "/portal/",
+      menuIcon: "trending_up"
+    },
+    {
+      type: "MENU",
+      menuName: "My FDs",
+      menuRoute: "/portal/my-fds",
+      menuIcon: "savings"
     },
   ]
 

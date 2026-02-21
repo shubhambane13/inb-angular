@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]], // Basic 10-digit check
+        requestedAccountType: ['', Validators.required],
         address: ['', Validators.required],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required],
@@ -60,7 +61,7 @@ export class RegisterComponent implements OnInit {
       // TODO: Call AuthService to register
 
       this._globalService
-        .postToServer('auth/register-cusotmer', registerData)
+        .postToServer('auth/register-customer', registerData)
         .subscribe((res) => {
           console.log(res);
         });

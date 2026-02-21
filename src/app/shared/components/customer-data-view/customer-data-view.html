@@ -33,6 +33,16 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="w-100 mb-1">
+    <mat-label>Initial Account Type</mat-label>
+    <mat-select formControlName="requestedAccountType">
+      <mat-option value="SAVINGS">Savings Account</mat-option>
+      <mat-option value="CURRENT">Current Account</mat-option>
+    </mat-select>
+    <mat-icon matSuffix>account_balance_wallet</mat-icon>
+    <mat-error>Account Type is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100 mb-1">
     <mat-label>Address</mat-label>
     <textarea
       matInput

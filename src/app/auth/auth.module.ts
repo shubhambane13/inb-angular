@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { MatSelectModule } from '@angular/material/select';
 
 export const routes:Routes = [
   { path: 'login', component: LoginComponent },
@@ -36,7 +37,8 @@ export const routes:Routes = [
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ]
 })
 export class AuthModule { }
