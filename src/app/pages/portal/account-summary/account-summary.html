@@ -1,0 +1,40 @@
+<div class="container-fluid p-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="m-0 text-primary">Account Summary</h2>
+    <button mat-raised-button color="primary" routerLink="/portal/open-new-account">
+      <mat-icon>add</mat-icon> Open New Account
+    </button>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-lg-4 mb-4" *ngFor="let acc of accounts">
+      <mat-card class="mat-elevation-z3 h-100 border-top border-primary border-3">
+        <mat-card-header>
+          <div mat-card-avatar>
+            <mat-icon class="text-primary fs-1">
+              {{ acc.accountType === 'SAVINGS' ? 'savings' : 'account_balance_wallet' }}
+            </mat-icon>
+          </div>
+          <mat-card-title>{{ acc.accountType | titlecase }} Account</mat-card-title>
+          <mat-card-subtitle>A/C: {{ acc.accountNumber }}</mat-card-subtitle>
+        </mat-card-header>
+        
+        <mat-card-content class="mt-4 text-center">
+          <p class="text-muted mb-1">Available Balance</p>
+          <h1 class="display-6 text-success fw-bold">₹ {{ acc.balance | number:'1.2-2' }}</h1>
+        </mat-card-content>
+        
+        <mat-divider></mat-divider>
+        
+        <mat-card-actions class="justify-content-center">
+          <button mat-button color="primary" routerLink="/portal/account-statement" [queryParams]="{account: acc.accountNumber}">
+            <mat-icon>receipt_long</mat-icon> View Statement
+          </button>
+          <button mat-button color="accent" routerLink="/portal/transfer-funds">
+            <mat-icon>compare_arrows</mat-icon> Transfer
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

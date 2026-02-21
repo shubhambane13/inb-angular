@@ -1,0 +1,42 @@
+<div class="container-fluid p-4 d-flex justify-content-center">
+  <mat-card class="mat-elevation-z3 w-100" style="max-width: 600px;">
+    <mat-card-header class="bg-primary text-white p-3 rounded-top">
+      <mat-card-title class="m-0 fs-4">Open New Account</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="p-4">
+      <div class="alert alert-info mb-4">
+        <mat-icon class="align-middle me-2">info</mat-icon>
+        <span>Your request will be sent to the bank for approval. You will be notified once the account is activated.</span>
+      </div>
+
+      <form [formGroup]="newAccountForm">
+        
+        <mat-form-field appearance="outline" class="w-100 mb-3">
+          <mat-label>Account Type</mat-label>
+          <mat-select formControlName="accountType">
+            <mat-option value="SAVINGS">Savings Account (Earns Interest)</mat-option>
+            <mat-option value="CURRENT">Current Account (Overdraft Facility)</mat-option>
+          </mat-select>
+          <mat-error>Please select an account type.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100 mb-3">
+          <mat-label>Purpose of Account</mat-label>
+          <input matInput formControlName="purpose" placeholder="e.g., Personal savings, Salary, Business">
+        </mat-form-field>
+
+        <div class="mb-4">
+          <mat-checkbox formControlName="agreeTerms" color="primary">
+            I agree to the <a href="javascript:void(0)" class="text-primary">Terms & Conditions</a> of iNetBank.
+          </mat-checkbox>
+        </div>
+
+        <button mat-raised-button color="primary" class="w-100 py-2 fs-6" type="submit" (click)="onSubmitRequest()" [disabled]="newAccountForm.invalid">
+          <mat-icon>send</mat-icon> Submit Request
+        </button>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

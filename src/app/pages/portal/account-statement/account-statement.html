@@ -1,0 +1,85 @@
+<div class="container-fluid p-4">
+  <h2 class="text-primary mb-4">Account Statements</h2>
+
+  <mat-card class="mb-4 mat-elevation-z2">
+    <mat-card-content>
+      <form [formGroup]="statementForm" class="row align-items-center">
+        
+        <mat-form-field appearance="outline" class="col-md-3">
+          <mat-label>Select Account</mat-label>
+          <mat-select formControlName="accountNumber">
+            <mat-option *ngFor="let acc of accounts" [value]="acc.accountNumber">
+              {{ acc.accountNumber }} ({{ acc.accountType }})
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-3">
+          <mat-label>Statement Type</mat-label>
+          <mat-select formControlName="statementType">
+            <mat-option value="MINI">Mini Statement (Last 5)</mat-option>
+            <mat-option value="DETAILED">Detailed Statement</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-4" *ngIf="statementForm.get('statementType')?.value === 'DETAILED'">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate formControlName="startDate" placeholder="Start date">
+            <input matEndDate formControlName="endDate" placeholder="End date">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+
+        <div class="col-md-2 text-end">
+          <button mat-raised-button color="primary" type="submit" (click)="generateStatement()" [disabled]="statementForm.invalid">
+            <mat-icon>search</mat-icon> Fetch
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="mat-elevation-z2" *ngIf="transactions.length > 0">
+    <mat-card-content class="p-0">
+      <table mat-table [dataSource]="transactions" class="w-100">
+        
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let txn"> {{ txn.transactionDate | date:'mediumDate' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let txn"> {{ txn.description }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef> Type </th>
+          <td mat-cell *matCellDef="let txn"> 
+            <span class="badge" [ngClass]="txn.type === 'CREDIT' ? 'bg-success' : 'bg-danger'">
+              {{ txn.type }}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef class="text-end"> Amount </th>
+          <td mat-cell *matCellDef="let txn" class="text-end fw-bold" [ngClass]="txn.type === 'CREDIT' ? 'text-success' : 'text-danger'">
+            {{ txn.type === 'CREDIT' ? '+' : '-' }} ₹{{ txn.amount | number:'1.2-2' }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['date', 'description', 'type', 'amount']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['date', 'description', 'type', 'amount'];"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="text-center mt-5 text-muted" *ngIf="transactions.length === 0">
+    <mat-icon style="font-size: 48px; width: 48px; height: 48px;">receipt_long</mat-icon>
+    <h4>No transactions to display</h4>
+    <p>Select an account and fetch the statement.</p>
+  </div>
+</div>

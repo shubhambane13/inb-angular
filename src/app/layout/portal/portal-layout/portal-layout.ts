@@ -98,7 +98,7 @@ export class PortalLayoutCompomenet {
     {
       type: "MENU",
       menuName: "Deposit Cheque",
-      menuRoute: "/portal/deposite-cheque",
+      menuRoute: "/portal/deposit-cheque",
       menuIcon: "upload_file"
     },
     {
@@ -114,7 +114,7 @@ export class PortalLayoutCompomenet {
     {
       type: "MENU",
       menuName: "Open New FD",
-      menuRoute: "/portal/",
+      menuRoute: "/portal/new-fd",
       menuIcon: "trending_up"
     },
     {

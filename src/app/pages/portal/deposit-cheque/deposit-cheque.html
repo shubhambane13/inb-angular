@@ -1,0 +1,76 @@
+<div class="container-fluid p-4 d-flex justify-content-center">
+  <mat-card class="mat-elevation-z3 w-100" style="max-width: 650px;">
+    
+    <mat-card-header class="bg-primary text-white p-3 rounded-top mb-3">
+      <div mat-card-avatar>
+        <mat-icon class="fs-1 mt-1 text-white">upload_file</mat-icon>
+      </div>
+      <mat-card-title class="m-0 fs-4 mt-2">Generate Cheque Deposit Slip</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="p-4">
+      <div class="alert alert-warning mb-4 shadow-sm border-start border-warning border-4">
+        <h5 class="alert-heading"><mat-icon class="align-middle me-1">info</mat-icon> Important Instructions</h5>
+        <p class="mb-0 text-dark">
+          After submitting this form, you must <strong>print the generated slip</strong> and attach it to your physical cheque[cite: 63]. 
+          Send the cheque and slip to our central branch via post or courier[cite: 64].
+        </p>
+      </div>
+
+      <form [formGroup]="chequeForm" (ngSubmit)="onSubmit()">
+        
+        <mat-form-field appearance="outline" class="w-100 mb-2">
+          <mat-label>Deposit to Account</mat-label>
+          <mat-select formControlName="depositAccount">
+            <mat-option *ngFor="let acc of accounts" [value]="acc.accountNumber">
+              {{ acc.accountNumber }} - {{ acc.accountType }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>account_balance_wallet</mat-icon>
+        </mat-form-field>
+
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100 mb-2">
+              <mat-label>Cheque Number</mat-label>
+              <input matInput formControlName="chequeNumber" placeholder="Usually 6 digits" maxlength="6">
+              <mat-icon matSuffix>pin</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100 mb-2">
+              <mat-label>Cheque Date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="chequeDate">
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100 mb-2">
+              <mat-label>Issuing Bank Name</mat-label>
+              <input matInput formControlName="issuingBank" placeholder="e.g., HDFC, SBI">
+              <mat-icon matSuffix>account_balance</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100 mb-3">
+              <mat-label>Amount (₹)</mat-label>
+              <input matInput type="number" formControlName="amount" placeholder="0.00" min="1">
+              <mat-icon matPrefix class="me-2">currency_rupee</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <button mat-raised-button color="primary" class="w-100 py-2 fs-6" type="submit" [disabled]="chequeForm.invalid">
+          <mat-icon>print</mat-icon> Generate & Print Slip
+        </button>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

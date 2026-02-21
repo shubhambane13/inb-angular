@@ -1,0 +1,76 @@
+<div class="container-fluid p-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="m-0 text-primary">My Fixed Deposits</h2>
+    <button mat-raised-button color="primary" routerLink="/portal/open-new-fd">
+      <mat-icon>add</mat-icon> Open New FD
+    </button>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <mat-card class="mat-elevation-z2 border-start border-primary border-4">
+        <mat-card-content class="p-3">
+          <p class="text-muted mb-1">Total Active FDs</p>
+          <h3 class="m-0">{{ fds.length }}</h3>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-4">
+      <mat-card class="mat-elevation-z2 border-start border-success border-4">
+        <mat-card-content class="p-3">
+          <p class="text-muted mb-1">Total Principal Invested</p>
+          <h3 class="m-0 text-success">₹{{ totalInvested | number:'1.2-2' }}</h3>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <mat-card class="mat-elevation-z2">
+    <mat-card-content class="p-0">
+      <table mat-table [dataSource]="fds" class="w-100">
+        
+        <ng-container matColumnDef="fdNumber">
+          <th mat-header-cell *matHeaderCellDef> FD Account No. </th>
+          <td mat-cell *matCellDef="let fd" class="fw-bold"> {{ fd.fdNumber }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="principal">
+          <th mat-header-cell *matHeaderCellDef> Principal </th>
+          <td mat-cell *matCellDef="let fd"> ₹{{ fd.principalAmount | number:'1.2-2' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="details">
+          <th mat-header-cell *matHeaderCellDef> Interest / Tenure </th>
+          <td mat-cell *matCellDef="let fd"> 
+            <span class="text-success">{{ fd.interestRate }}%</span> 
+            <span class="text-muted"> for {{ fd.tenureMonths }} Months</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="maturityDate">
+          <th mat-header-cell *matHeaderCellDef> Maturity Date </th>
+          <td mat-cell *matCellDef="let fd" class="text-primary"> 
+            {{ fd.maturityDate | date:'mediumDate' }} 
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="maturityAmount">
+          <th mat-header-cell *matHeaderCellDef class="text-end"> Maturity Amount </th>
+          <td mat-cell *matCellDef="let fd" class="text-end fw-bold"> 
+            ₹{{ fd.maturityAmount | number:'1.2-2' }} 
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell text-center p-5 text-muted" colspan="5">
+            <mat-icon class="fs-1" style="width: 40px; height: 40px;">savings</mat-icon>
+            <h5 class="mt-2">You don't have any active Fixed Deposits.</h5>
+          </td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
