@@ -9,3 +9,19 @@ export interface GlobalTableData {
   data: any[];
   total: number;
 }
+
+export interface DropdownRequestDto {
+  elementId: string;
+  filter1?: string;
+  filter2?: string;
+  filter3?: string;
+}
+
+export interface DropdownElementDto {
+  elementId: string;
+  label: string;
+  value: string;
+  filter1?: string;
+  filter2?: string;
+  filter3?: string;
+}
