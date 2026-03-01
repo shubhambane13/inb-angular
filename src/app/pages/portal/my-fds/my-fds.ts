@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { GlobalService } from '../../../shared/services/global.service';
 
 @Component({
   selector: 'app-my-fds',
@@ -22,32 +23,23 @@ export class MyFdsComponent implements OnInit {
   
   displayedColumns: string[] = ['fdNumber', 'principal', 'details', 'maturityDate', 'maturityAmount'];
   
-  // Mock Data
-  fds = [
-    {
-      id: 1,
-      fdNumber: 'FD9000001',
-      principalAmount: 50000,
-      interestRate: 4.5,
-      tenureMonths: 12,
-      maturityDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
-      maturityAmount: 52250
-    },
-    {
-      id: 2,
-      fdNumber: 'FD9000002',
-      principalAmount: 100000,
-      interestRate: 5.5,
-      tenureMonths: 36,
-      maturityDate: new Date(new Date().setFullYear(new Date().getFullYear() + 3)),
-      maturityAmount: 116500
-    }
-  ];
-
+  activeFds:number = 0;
   totalInvested: number = 0;
+  totalInterestEarnedTillDate: number = 0;
+  fds = [];
+
+  constructor(private _globalService: GlobalService) {}
 
   ngOnInit(): void {
-    // Calculate total principal invested for the summary card
-    this.totalInvested = this.fds.reduce((sum, current) => sum + current.principalAmount, 0);
+    this.getDate();
+  }
+
+  getDate() {
+    this._globalService.postToServer('fd/fd-data',{}).subscribe(res => {
+      this.activeFds = res.totalActiveFds;
+      this.fds = res.activeFds;
+      this.totalInvested = res.totalPrincipalInvested;
+      this.totalInterestEarnedTillDate = res.totalInterestEarnedTillDate;
+    });
   }
 }

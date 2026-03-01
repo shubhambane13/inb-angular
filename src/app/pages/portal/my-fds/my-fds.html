@@ -11,7 +11,7 @@
       <mat-card class="mat-elevation-z2 border-start border-primary border-4">
         <mat-card-content class="p-3">
           <p class="text-muted mb-1">Total Active FDs</p>
-          <h3 class="m-0">{{ fds.length }}</h3>
+          <h3 class="m-0">{{ activeFds }}</h3>
         </mat-card-content>
       </mat-card>
     </div>
@@ -23,6 +23,14 @@
         </mat-card-content>
       </mat-card>
     </div>
+    <div class="col-md-4">
+      <mat-card class="mat-elevation-z2 border-start border-warn border-4">
+        <mat-card-content class="p-3">
+          <p class="text-muted mb-1">Total Interest Earned</p>
+          <h3 class="m-0 text-warn">₹{{ totalInterestEarnedTillDate | number:'1.2-2' }}</h3>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 
   <mat-card class="mat-elevation-z2">
@@ -31,7 +39,7 @@
         
         <ng-container matColumnDef="fdNumber">
           <th mat-header-cell *matHeaderCellDef> FD Account No. </th>
-          <td mat-cell *matCellDef="let fd" class="fw-bold"> {{ fd.fdNumber }} </td>
+          <td mat-cell *matCellDef="let fd" class="fw-bold"> {{ fd.id }} </td>
         </ng-container>
 
         <ng-container matColumnDef="principal">

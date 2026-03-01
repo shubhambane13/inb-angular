@@ -8,21 +8,13 @@
         <mat-form-field appearance="outline" class="col-md-3">
           <mat-label>Select Account</mat-label>
           <mat-select formControlName="accountNumber">
-            <mat-option *ngFor="let acc of accounts" [value]="acc.accountNumber">
+            <mat-option *ngFor="let acc of accounts" [value]="acc.id">
               {{ acc.accountNumber }} ({{ acc.accountType }})
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-md-3">
-          <mat-label>Statement Type</mat-label>
-          <mat-select formControlName="statementType">
-            <mat-option value="MINI">Mini Statement (Last 5)</mat-option>
-            <mat-option value="DETAILED">Detailed Statement</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="col-md-4" *ngIf="statementForm.get('statementType')?.value === 'DETAILED'">
+        <mat-form-field appearance="outline" class="col-md-4">
           <mat-label>Enter a date range</mat-label>
           <mat-date-range-input [rangePicker]="picker">
             <input matStartDate formControlName="startDate" placeholder="Start date">
@@ -33,7 +25,7 @@
         </mat-form-field>
 
         <div class="col-md-2 text-end">
-          <button mat-raised-button color="primary" type="submit" (click)="generateStatement()" [disabled]="statementForm.invalid">
+          <button mat-raised-button color="primary" type="submit" (click)="getGrid()" [disabled]="statementForm.invalid">
             <mat-icon>search</mat-icon> Fetch
           </button>
         </div>
@@ -41,9 +33,9 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card class="mat-elevation-z2" *ngIf="transactions.length > 0">
+  <mat-card class="mat-elevation-z2" *ngIf="tableData.data.length > 0">
     <mat-card-content class="p-0">
-      <table mat-table [dataSource]="transactions" class="w-100">
+      <!-- <table mat-table [dataSource]="transactions" class="w-100">
         
         <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef> Date </th>
@@ -73,11 +65,21 @@
 
         <tr mat-header-row *matHeaderRowDef="['date', 'description', 'type', 'amount']"></tr>
         <tr mat-row *matRowDef="let row; columns: ['date', 'description', 'type', 'amount'];"></tr>
-      </table>
+      </table> -->
+      <app-global-table
+        [tableData]="tableData"
+        [columnList]="tableConfig"
+        [pageSize]="pageSize"
+        [pageIndex]="pageIndex"
+        (onSortChange)="onSortChange($event)"
+        (onPageChange)="onPageChange($event)"
+      >
+      </app-global-table>
+
     </mat-card-content>
   </mat-card>
 
-  <div class="text-center mt-5 text-muted" *ngIf="transactions.length === 0">
+  <div class="text-center mt-5 text-muted" *ngIf="tableData.data.length === 0">
     <mat-icon style="font-size: 48px; width: 48px; height: 48px;">receipt_long</mat-icon>
     <h4>No transactions to display</h4>
     <p>Select an account and fetch the statement.</p>
